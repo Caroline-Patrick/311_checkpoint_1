@@ -47,16 +47,51 @@ const create = (req, res) => {
         res.json({msg: 'User Added: ', newUser})
 };
 
+// const update = (req, res) => {
+//     const found = users.some(user => user.id == req.params.id)
+//     if (found) {
+//         const updateThis = users.filter(user => user.id == req.params.id)
+//         updateThis[0].name = req.body.name;
+//         const updateUser = {
+//             name: "hello world"
+//         }
+//         updateThis.push(updateUser)
+//         res.send(updateThis)
+//     } else {
+//         res.status(404).json({msg: `User id ${req.params.id} not found.`})
+//     }
+
+// };
+
 const update = (req, res) => {
+    
     const found = users.some(user => user.id == req.params.id)
+    // if id of user is found, found = true
+    
     if (found) {
-        const updateThis = users.filter(user => user.id == req.params.id)
-        updateThis[0].name = req.body.name;
-        const updateUser = {
-            name: "hello world"
-        }
-        updateThis.push(updateUser)
-        res.send(updateThis)
+        const updatedUser = req.body;
+        console.log(updatedUser)
+
+        users.forEach(user => {
+            if(user.id ==req.params.id){
+                user.name = req.body.name ? updatedUser.name : user.name;
+                user.username = req.body.username ? updatedUser.username : user.username;
+                user.email = req.body.email ? updatedUser.email : user.email;
+                    user.address = 
+                        req.body.street;
+                        req.body.suite;
+                        req.body.city;
+                        req.body.zipcode;
+                    
+                    user.phone = req.body.phone ? updatedUser.phone : user.phone;
+                    user.website = req.body.website ? updatedUser.website : user.website;
+                    user.company = req.body;
+
+                    res.json({msg: "User Updated Successfully: ", user})            }
+        })
+        
+
+        
     } else {
         res.status(404).json({msg: `User id ${req.params.id} not found.`})
     }
