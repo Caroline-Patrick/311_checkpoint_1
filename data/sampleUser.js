@@ -1,5 +1,4 @@
 module.exports = {
-  "id": 99,
   "name": "Brett Smith",
   "username": "brsmith",
   "email": "brsmith@june.biz",
